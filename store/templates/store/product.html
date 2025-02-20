@@ -1,0 +1,26 @@
+{% extends "./base.html" %}  <!-- Agar bazaviy shablon bo‘lsa, shu qatorni ishlat -->
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <!-- Mahsulot rasmi -->
+        <div class="col-md-6 text-center">
+            <img src="{{ product.image.url }}" class="img-fluid rounded shadow-sm" alt="{{ product.title }}" style="max-height: 400px;">
+        </div>
+
+        <!-- Mahsulot ma'lumotlari -->
+        <div class="col-md-6">
+            <h2 class="text-primary">{{ product.title }}</h2>
+            <p class="text-muted">Kategoriya: {{ product.product_ctg.name }}</p>
+            <p class="lead">{{ product.description }}</p>
+            <h3 class="text-danger fw-bold">$ {{ product.price }}</h3>
+
+            <!-- Sotib olish tugmasi -->
+            <a href="#" class="btn btn-success btn-lg mt-3">Sotib olish</a>
+
+            <!-- Orqaga qaytish -->
+            <a href="{% url 'store' %}" class="btn btn-outline-secondary btn-lg mt-3">Orqaga</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

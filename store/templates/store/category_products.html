@@ -1,0 +1,38 @@
+{% extends "./base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">{{ category.name }} dagi mahsulotlar</h2>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+        {% for product in products %}
+        <div class="col">
+            <div class="card shadow-sm h-100">
+                <img src="{{ product.image.url }}" class="card-img-top img-fluid"
+                     alt="{{ product.title }}" style="max-height: 200px; width: auto; object-fit: contain;">
+                <div class="card-body text-center">
+                    <p class="card-text">
+                        <a class="text-info text-decoration-none"
+                           href="{% url 'detail_view' product.id %}">
+                            {{ product.title }}
+                        </a>
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="text-danger fw-bold">$ {{ product.price }}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center">
+            <p class="text-muted">Bu kategoriyada hali mahsulot yo‘q.</p>
+        </div>
+        {% endfor %}
+        <a href="{% url 'store' %}">
+            <button type="button" value="" class="btn btn-secondary btn-sm">
+                Back
+            </button>
+        </a>
+    </div>
+</div>
+{% endblock %}
+

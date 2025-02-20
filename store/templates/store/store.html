@@ -1,0 +1,81 @@
+{% extends "./base.html" %}
+
+{% load static %}
+
+
+{% block content %}
+
+
+    {% if not user.is_authenticated %}
+    <div class="row py-lg-5">
+
+        <div class="col-lg-6 col-md-8 mx-auto">
+
+
+            <h4> Edenthought...Eng zo'r soddalik. </h4>
+
+
+            <br>
+
+
+            <p class="lead text-muted">
+
+                Keng turdagi kolleksiyamizni ko'rib chiqing.
+
+            </p>
+
+
+            <br>
+
+            <a href="#" class="btn btn-primary my-2"> Hisob yaratish </a>
+
+
+        </div>
+
+    </div>
+    {% else %}
+    <section class="py-4 text-center container">
+
+    <div class="album py-5 bg-light">
+
+        <div class="container">
+
+            <div class="pb-3 h5"> Barcha mahsulotlar </div>
+
+
+            <hr>
+
+            <br>
+
+
+            <div class="container mt-5">
+                <h2 class="text-center mb-4">Mahsulotlar</h2>
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+                    {% for product in all_products %}
+                    <div class="col">
+                        <div class="card shadow-sm h-1000">
+                            <img src="{{ product.image.url }}" class="card-img-top img-fluid"
+                                 alt="{{ product.title }}" style="max-height: 200px; width: auto; object-fit: contain;">
+                            <div class="card-body text-center">
+                                <p class="card-text">
+                                    <a class="text-info text-decoration-none"
+                                       href="{% url 'detail_view' product.id %}">
+                                        {{ product.title }}
+                                    </a>
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h5 class="text-danger fw-bold">$ {{ product.price }}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</section>
+
+
+{% endblock %}
